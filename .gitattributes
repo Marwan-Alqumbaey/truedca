@@ -1,2 +1,6 @@
-# Auto detect text files and perform LF normalization
-* text=auto
+# Keep the open data byte-for-byte as distributed, so the stored checksums match on every system
+data/** -text
+*.gz binary
+*.xpt binary
+*.tiff binary
+*.pdf binary
