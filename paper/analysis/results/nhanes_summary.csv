@@ -1,0 +1,3 @@
+"outcome","split","n","reference_cases","recorded_cases","sensitivity","auc_reference","auc_recorded","mean_risk"
+"diabetes","development 2011-12, 2013-14 ; validation 2015-16, 2017-18",9539,1823,1444,"0.79 (0.77-0.81)",0.829917928479679,0.834791319835951,0.188691951596906
+"ckd","development 2011-12, 2013-14 ; validation 2015-16, 2017-18",9674,1834,365,"0.20 (0.18-0.22)",0.77337786259542,0.752534960275591,0.198171135280987

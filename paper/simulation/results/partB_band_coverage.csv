@@ -1,0 +1,25 @@
+"mech","budget","design","band_cover_delta","band_cover_nb"
+"M3",300,"Balanced",0.89,0.924
+"M4",300,"Balanced",0.912,0.956
+"M3",600,"Balanced",0.89,0.91
+"M4",600,"Balanced",0.88,0.908
+"M3",1200,"Balanced",0.93,0.92
+"M4",1200,"Balanced",0.948,0.932
+"M3",300,"Optimal (both)",0.878,0.948
+"M4",300,"Optimal (both)",0.894,0.988
+"M3",600,"Optimal (both)",0.924,0.986
+"M4",600,"Optimal (both)",0.906,0.982
+"M3",1200,"Optimal (both)",0.92,0.978
+"M4",1200,"Optimal (both)",0.94,0.976
+"M3",300,"Optimal (treat-all)",0.874,0.96
+"M4",300,"Optimal (treat-all)",0.908,0.982
+"M3",600,"Optimal (treat-all)",0.91,0.974
+"M4",600,"Optimal (treat-all)",0.908,0.98
+"M3",1200,"Optimal (treat-all)",0.924,0.964
+"M4",1200,"Optimal (treat-all)",0.944,0.976
+"M3",300,"SRS",0.862,0.974
+"M4",300,"SRS",0.87,0.978
+"M3",600,"SRS",0.91,0.984
+"M4",600,"SRS",0.94,0.988
+"M3",1200,"SRS",0.906,0.99
+"M4",1200,"SRS",0.956,0.98

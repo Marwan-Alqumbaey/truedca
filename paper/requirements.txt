@@ -1,0 +1,5 @@
+# Python packages needed for the numerical checks in verify/ (run from the paper folder)
+numpy>=1.22
+scipy>=1.8
+pandas>=1.4
+../python

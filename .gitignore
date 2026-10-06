@@ -1,0 +1,17 @@
+.Rproj.user/
+.Rhistory
+.RData
+*.Rcheck/
+*.tar.gz
+__pycache__/
+*.egg-info/
+.pytest_cache/
+build/
+dist/
+.DS_Store
+# raw NHANES files are downloaded by data/nhanes/download_nhanes.R
+data/nhanes/*.xpt
+# intermediate simulation files
+paper/simulation/results/*.rds
+# outputs of the reproducibility check
+paper/expected/

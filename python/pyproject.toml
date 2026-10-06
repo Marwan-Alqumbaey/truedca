@@ -1,0 +1,28 @@
+[build-system]
+requires = ["setuptools>=64"]
+build-backend = "setuptools.build_meta"
+
+[project]
+name = "truedca"
+version = "0.1.0"
+description = "Decision curve analysis for outcomes recorded with error"
+readme = "README.md"
+license = {text = "MIT"}
+requires-python = ">=3.9"
+authors = [
+  {name = "Marwan Alqumbaey", email = "marwanalqumbaey@gmail.com"},
+  {name = "Yousef M. Nasher", email = "yousefnasher76@gmail.com"},
+]
+dependencies = ["numpy>=1.22", "scipy>=1.8", "pandas>=1.4"]
+classifiers = ["Programming Language :: Python :: 3", "License :: OSI Approved :: MIT License",
+               "Topic :: Scientific/Engineering :: Medical Science Apps."]
+
+[project.optional-dependencies]
+plot = ["matplotlib>=3.5"]
+test = ["pytest>=7"]
+
+[project.urls]
+Homepage = "https://github.com/Marwan-Alqumbaey/truedca"
+
+[tool.setuptools.packages.find]
+where = ["src"]

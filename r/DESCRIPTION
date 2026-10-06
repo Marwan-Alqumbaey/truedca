@@ -1,0 +1,26 @@
+Package: truedca
+Title: Decision Curve Analysis for Outcomes Recorded with Error
+Version: 0.1.0
+Authors@R: c(
+    person("Marwan", "Alqumbaey", email = "marwanalqumbaey@gmail.com",
+           role = c("aut", "cre"), comment = c(ORCID = "0009-0004-8688-9556")),
+    person("Yousef M.", "Nasher", email = "yousefnasher76@gmail.com",
+           role = "aut", comment = c(ORCID = "0009-0001-3704-3149")))
+Description: Decision curves for clinical prediction models when the outcome
+    used for evaluation is recorded with error, as with diagnosis codes or
+    text-mined labels. Provides observed and corrected net benefit, the
+    thresholds at which a decision curve cannot be informative, sharp bounds
+    and tipping points when error rates are only partly known, estimation from
+    two-phase chart review designs with simultaneous confidence bands,
+    optimal chart review sampling probabilities and their expected gain, and
+    probabilistic bias analysis when no chart review is possible.
+License: MIT + file LICENSE
+URL: https://github.com/Marwan-Alqumbaey/truedca
+BugReports: https://github.com/Marwan-Alqumbaey/truedca/issues
+Encoding: UTF-8
+Roxygen: list(markdown = TRUE)
+RoxygenNote: 7.3.1
+Depends: R (>= 4.1.0)
+Imports: graphics, grDevices, stats
+Suggests: testthat (>= 3.0.0)
+Config/testthat/edition: 3

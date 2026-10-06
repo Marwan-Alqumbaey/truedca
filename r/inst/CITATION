@@ -1,0 +1,7 @@
+bibentry(
+  bibtype = "Unpublished",
+  title = "Decision curve analysis with misclassified outcomes: bias, sensitivity analysis and optimal two-phase validation",
+  author = c(person("Marwan", "Alqumbaey"), person("Yousef M.", "Nasher")),
+  year = "2026",
+  note = "R package truedca: https://github.com/Marwan-Alqumbaey/truedca"
+)

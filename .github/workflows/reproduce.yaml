@@ -1,0 +1,77 @@
+name: Reproduce results
+
+on:
+  push:
+    branches: [main]
+  pull_request:
+  workflow_dispatch:
+
+jobs:
+  checks-of-theorems:
+    runs-on: ubuntu-24.04
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.12"
+      - uses: r-lib/actions/setup-r@v2
+        with:
+          r-version: '4.3.3'
+          use-public-rspm: true
+      - name: Install
+        working-directory: paper
+        run: |
+          pip install -r requirements.txt
+          Rscript install.R
+      - name: Numerical checks of the theorems
+        working-directory: paper
+        run: |
+          for f in verify/*.py; do echo "== $f"; python "$f"; done
+          Rscript verify/check_split_interval.R
+
+  examples-and-simulation:
+    runs-on: ubuntu-24.04
+    steps:
+      - uses: actions/checkout@v4
+      - uses: r-lib/actions/setup-r@v2
+        with:
+          r-version: '4.3.3'
+          use-public-rspm: true
+      - name: Install
+        working-directory: paper
+        run: Rscript install.R
+      - name: Keep the stored results
+        working-directory: paper
+        run: |
+          mkdir -p expected/simulation expected/analysis expected/tables expected/derived
+          cp simulation/results/partA_distortion.csv expected/simulation/
+          cp analysis/results/*.csv expected/analysis/
+          cp tables/*.md expected/tables/
+          cp ../data/derived/*.csv expected/derived/
+      - name: Check the open data
+        run: |
+          cd data/eicu-demo && sha256sum -c SHA256SUMS.txt
+      - name: Simulation, part A
+        working-directory: paper
+        run: |
+          Rscript simulation/run_simulation.R A
+          mkdir -p fresh && cp simulation/results/partA_distortion.csv fresh/
+          Rscript check_results.R expected/simulation fresh
+      - name: Example 1 (eICU)
+        working-directory: paper
+        run: Rscript analysis/eicu_aki.R ../data/eicu-demo
+      - name: Examples 2 and 3 (NHANES)
+        run: |
+          Rscript data/nhanes/download_nhanes.R
+          cd paper && Rscript analysis/nhanes.R ../data/nhanes
+      - name: Compare the examples with the stored results
+        working-directory: paper
+        run: |
+          Rscript check_results.R expected/analysis analysis/results
+          Rscript check_results.R expected/derived ../data/derived
+      - name: Tables and figures from the stored results
+        working-directory: paper
+        run: |
+          Rscript tables/make_tables.R
+          Rscript check_results.R expected/tables tables
+          Rscript analysis/figures.R
