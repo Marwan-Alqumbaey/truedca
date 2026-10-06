@@ -4,6 +4,7 @@
 [![Python package](https://github.com/Marwan-Alqumbaey/truedca/actions/workflows/python-package.yaml/badge.svg)](https://github.com/Marwan-Alqumbaey/truedca/actions/workflows/python-package.yaml)
 [![Reproduce results](https://github.com/Marwan-Alqumbaey/truedca/actions/workflows/reproduce.yaml/badge.svg)](https://github.com/Marwan-Alqumbaey/truedca/actions/workflows/reproduce.yaml)
 [![License: MIT](https://img.shields.io/badge/License-MIT-blue.svg)](LICENSE)
+[![DOI](https://zenodo.org/badge/DOI/10.5281/zenodo.23194144.svg)](https://doi.org/10.5281/zenodo.23194144)
 
 Decision curve analysis when the outcome is recorded with error.
 
@@ -104,7 +105,8 @@ stored results.
 ## Citation
 
 Alqumbaey M, Nasher YM. Decision curve analysis with misclassified outcomes: bias,
-sensitivity analysis and optimal two-phase validation. See [`CITATION.cff`](CITATION.cff).
+sensitivity analysis and optimal two-phase validation. Software: Alqumbaey M, Nasher YM.
+truedca 0.1.0. Zenodo. https://doi.org/10.5281/zenodo.23194144. See [`CITATION.cff`](CITATION.cff).
 
 ## Authors
 
