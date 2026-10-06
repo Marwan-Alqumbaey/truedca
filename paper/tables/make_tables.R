@@ -1,4 +1,5 @@
 # Builds the tables of the paper and its supplement (Markdown) from the result files.
+# Rows are sorted with method = "radix", so the order is the same in every locale.
 # Run from the paper folder: Rscript tables/make_tables.R
 md <- function(df, file) {
   out <- c(paste("|", paste(names(df), collapse = " | "), "|"),
@@ -32,7 +33,7 @@ md(data.frame(Scenario = mech_lab[t1$mech], Threshold = pct(t1$threshold), Metho
 
 # ---- Table S2: full chart review results ------------------------------------
 s2 <- pb[grepl("^(SRS|Balanced|Optimal)", pb$design) & !grepl("\\[", pb$design) & pb$threshold %in% c(0.06, 0.10, 0.20, 0.30), ]
-s2 <- s2[order(s2$mech, s2$budget, s2$design, s2$threshold), ]
+s2 <- s2[order(s2$mech, s2$budget, s2$design, s2$threshold, method = "radix"), ]
 md(data.frame(Scenario = s2$mech, Charts = s2$budget, Design = s2$design, Threshold = pct(s2$threshold),
               `Bias (gain)` = f4(s2$delta_bias), `SE (gain)` = f4(s2$delta_empse), `Model SE (gain)` = f4(s2$delta_modse),
               `Coverage (gain)` = f2(s2$delta_cover), `Bias (NB)` = f4(s2$nb_bias), `SE (NB)` = f4(s2$nb_empse),
@@ -40,7 +41,7 @@ md(data.frame(Scenario = s2$mech, Charts = s2$budget, Design = s2$design, Thresh
 
 # ---- Table S3: bands ----------------------------------------------------------
 bc <- read.csv("simulation/results/partB_band_coverage.csv")
-bc <- bc[!grepl("\\[", bc$design), ]; bc <- bc[order(bc$mech, bc$budget, bc$design), ]
+bc <- bc[!grepl("\\[", bc$design), ]; bc <- bc[order(bc$mech, bc$budget, bc$design, method = "radix"), ]
 md(data.frame(Scenario = bc$mech, Charts = bc$budget, Design = bc$design,
               `Gain over treat-all` = f2(bc$band_cover_delta), `Net benefit` = f2(bc$band_cover_nb), check.names = FALSE),
    "tableS3.md")
@@ -49,7 +50,7 @@ md(data.frame(Scenario = bc$mech, Charts = bc$budget, Design = bc$design,
 v <- pb[pb$design %in% c("SRS", "SRS [wald]", "SRS [strata]", "Optimal (both)", "Optimal (both) [wald]", "Optimal (both) [strata]") &
         pb$threshold %in% c(0.04, 0.10, 0.20, 0.30), ]
 lab <- function(d) ifelse(grepl("wald", d), "Logistic, Wald", ifelse(grepl("strata", d), "Stratum means, split", "Logistic, split (default)"))
-v <- v[order(v$mech, v$budget, sub(" \\[.*", "", v$design), lab(v$design), v$threshold), ]
+v <- v[order(v$mech, v$budget, sub(" \\[.*", "", v$design), lab(v$design), v$threshold, method = "radix"), ]
 md(data.frame(Scenario = v$mech, Charts = v$budget, Design = sub(" \\[.*", "", v$design), `Working model, interval` = lab(v$design),
               Threshold = pct(v$threshold), `SE (gain)` = f4(v$delta_empse), `Coverage (gain)` = f2(v$delta_cover),
               `Width (gain)` = f3(v$delta_width), `SE (NB)` = f4(v$nb_empse), `Coverage (NB)` = f2(v$nb_cover),
@@ -65,7 +66,7 @@ real <- do.call(rbind, lapply(split(pb[pb$design %in% c("SRS", "Optimal (both)",
              both = tot("SRS", FALSE) / tot("Optimal (both)", FALSE), all = tot("SRS", TRUE) / tot("Optimal (treat-all)", TRUE))
 }))
 g <- merge(reshape(gp[, c("mech", "budget", "comparator", "gain")], idvar = c("mech", "budget"), timevar = "comparator", direction = "wide"), real)
-g <- g[order(g$mech, g$budget), ]
+g <- g[order(g$mech, g$budget, method = "radix"), ]
 md(data.frame(Scenario = g$mech, Charts = g$budget,
               `Predicted, treat-all design` = f2(g$gain.all), `Realised, treat-all design` = f2(g$all),
               `Predicted, both design` = f2(g$gain.both), `Realised, both design` = f2(g$both), check.names = FALSE), "tableS5.md")
